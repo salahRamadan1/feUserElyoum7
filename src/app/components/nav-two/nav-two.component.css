@@ -1,0 +1,14 @@
+.navHome {
+  background-color: #393939 !important;
+}
+h5 {
+  background-color: #2f2e2e;
+  margin-top: 20px;
+}
+h2 {
+  transform: translate(50%, -80%);
+
+  background-color: rgb(114, 84, 84);
+  border-radius: 20px;
+  padding: 10px;
+}

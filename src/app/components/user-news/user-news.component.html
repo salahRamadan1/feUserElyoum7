@@ -1,0 +1,33 @@
+<div class=" container bg-white py-5 ">
+   <div class=" row justify-content-center">
+
+      <p class=" alert alert-danger text-center" *ngIf="errTrue">{{errTrue}}</p>
+      <div *ngFor=" let data of dataTrue dataTrue" class=" col-md-3  ">
+         <div class=" item rounded-3 p-2">
+            <div class=" d-flex justify-content-between align-items-center">
+               <div class=" item1">
+                  <img [src]="    data.userId.profile_pic
+                         " class=" imgUser mt-2 me-2 rounded-5" alt="">
+                  <h4> {{data.userId.firstName}} {{data.userId.lastName}}</h4>
+               </div>
+               <div class=" item2">
+
+                  <br>
+               </div>
+            </div>
+
+            <hr>
+            <img [src]="data.Image" class="w-100 " alt="">
+            <h3> نوع الخبر <span class=" text-muted"> {{data.newsType}}</span> </h3>
+            <h5> عنوان الخبر <span class=" text-muted">{{data.addressHeadline}}</span></h5>
+            <p> مقال الخبر <span class=" text-muted">{{data.ExplanationOfTheNews}}</span>
+
+
+            </p>
+            <p> التاريخ <span class=" text-muted"> {{data.createdAt.slice(0,10) }}</span></p>
+         </div>
+      </div>
+
+
+   </div>
+</div>

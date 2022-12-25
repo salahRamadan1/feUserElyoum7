@@ -1,0 +1,116 @@
+<div class=" container bg-white">
+    <div class=" row py-5 g-3">
+        <div class=" col-md-12">
+            <div class="  ">
+
+                <form>
+                    <div class=" item shadow-lg rounded-5  p-4   ">
+                        <form [formGroup]="formAddNews" (ngSubmit)="sendNews()">
+                            <!-- newsType -->
+
+                            <label for="newsType" class=" ms-1">نوع الخبر</label>
+                            <select name="newsType" id="newsType" formArrayName="newsType">
+                                <option value="سياسه">سياسه</option>
+                                <option value="حوادث">حوادث</option>
+                                <option value="اقتصاد">اقتصاد</option>
+                                <option value="رياضه">رياضه</option>
+                                <option value="صحه">صحه</option>
+
+                            </select>
+                            <br>
+                            <!-- addressHeadline -->
+                            <label for="addressHeadline" class=" mb-2">العنوان الرئيسي</label>
+                            <input type="text" class=" form-control " id="addressHeadline">
+
+                            <!-- ExplanationOfTheNews -->
+                            <label for="ExplanationOfTheNews"> مقال الخبر</label>
+                            <textarea id="ExplanationOfTheNews" class=" form-control  "></textarea>
+
+                            <!-- Image -->
+                            <label style=" cursor:pointer;" for="Image" class=" btn btn-outline-danger w-100 mt-2"> صوره
+                                الخبر
+                            </label>
+                            <input type="file" class=" d-none " id="Image" (change)="choosePhoto($event)">
+                            <!-- btn submit -->
+                            <button class=" btn btn-danger  mt-2" type="submit"> اضافه
+                                الخبر</button>
+                        </form>
+                        <p class=" alert alert-danger mt-2 " *ngIf="errSendNews">{{errSendNews}}</p>
+                    </div>
+
+                </form>
+            </div>
+
+
+
+
+
+        </div>
+        <div *ngFor="let data of dataNews" class=" col-md-4">
+            <div class=" item">
+                <div class=" d-flex justify-content-between align-items-center">
+                    <div class=" item1">
+                        <img [src]="    data.userId.profile_pic
+                        " class=" imgUser rounded-5" alt="">
+                        <h4> {{data.userId.firstName}} {{data.userId.lastName}}</h4>
+                    </div>
+                    <div class=" item2">
+                        <h4 *ngIf="!data.ConfirmTheNews " class=" btn btn-outline-danger">لم يتم توثيق الخبر حتي الان
+                        </h4>
+                        <h4 *ngIf="data.ConfirmTheNews " class=" btn btn-success"> تم توثيق الخبر
+                        </h4>
+                        <br>
+                        <h4 class=" btn btn-outline-danger" (click)="deleteNews(data._id )">حذف الخبر</h4>
+                    </div>
+                </div>
+
+                <hr>
+                <img [src]="data.Image" class="w-100 h-50" alt="">
+                <h3> نوع الخبر <span class=" text-muted"> {{data.newsType}}</span> </h3>
+                <h5> عنوان الخبر <span class=" text-muted">{{data.addressHeadline}}</span></h5>
+                <p> مقال الخبر <span class=" text-muted">{{data.ExplanationOfTheNews}}</span>
+
+                    <button (click)="getNewsOne(data._id)" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        class="  btn btn-outline-danger mt-2 me-2">قراءه
+                        المزيد</button>
+                </p>
+                <p> التاريخ <span class=" text-muted"> {{data.createdAt.slice(0,10) }}</span></p>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> الخبر</h1>
+
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let data of dataOneNews" class=" item text-center">
+                    <h5 class=" my-2"> نوع الخبر : <span>{{data.newsType}}</span></h5>
+                    <img [src]="data.Image" alt="">
+                    <h5>عنوان الخبر : <span>{{data.addressHeadline}}</span></h5>
+
+                    <p class=" text-muted"> <span class=" fw-bolder text-black mb-2"> مقال الخبر : </span>
+                        {{data.ExplanationOfTheNews }} </p>
+                    <p><span class=" fw-bolder text-black my-2  "> التاريخ : </span> {{data.createdAt}}</p>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="remove()">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

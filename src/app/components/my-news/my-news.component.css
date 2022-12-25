@@ -1,0 +1,14 @@
+textarea{
+    height: 250px;
+}
+.imgUser{
+    width: 100px;
+    height: 100px;
+}
+.item{
+    border: 1px solid red;
+    padding: 10px;
+}
+.imgData{
+    height: 500px;
+}

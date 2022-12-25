@@ -1,0 +1,17 @@
+.footer {
+  background-color: #3a3a3a;
+  color: white;
+}
+.liFoter {
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: 100px;
+  border: solid 1px #aca0a0;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+.liFoter:hover {
+  background-color: red;
+  color: black;
+  font-weight: bolder;
+}

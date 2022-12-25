@@ -1,0 +1,124 @@
+<!-- <div class=" container mt-5 pb-5 bg-white py-2 navHome d-flex justify-content-center  text-white shadow-lg">
+    <h5 class=" py-2  ">مرحبا بك في موقع اليوم السابع</h5>
+    <input type="text" class=" inputSearch" placeholder="بحث.......">
+</div> -->
+
+<div class=" container pt-2 bg-white">
+    <div class=" row  ">
+        <div *ngFor="let imgData of dataSlid" class=" col-md-4">
+            <div class=" item  my-2 position-relative">
+                <img [src]="imgData.Image" alt="">
+
+                <p class=" bg-danger  w-25 text-center position-absolute top-0 end-0" style="cursor: pointer; "
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getNewsOne(imgData._id)">
+                    {{imgData.newsType}}</p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class=" row p-2">
+        <div *ngFor="let data of headerData" class="  col-md-9  d-flex">
+            <div class=" row item p-2 ">
+                <div class=" col-md-4 position-relative ">
+                    <img [src]="data.Image" class="w-100 " alt="">
+                    <p class=" position-absolute top-0 start-0 ms-3 bg-danger">{{data.createdAt.slice(0,9) }}</p>
+
+                </div>
+                <div class=" col-md-4">
+                    <h5 class=" my-2"> نوع الخبر : <span>{{data.newsType}}</span></h5>
+                    <h5>عنوان الخبر : <span class=" h6">{{data.addressHeadline}}</span></h5>
+
+                </div>
+                <div class=" col-md-4">
+
+                    <p class=" text-muted"> <span class=" fw-bolder text-black mb-2"> مقال الخبر : </span>
+                        {{data.ExplanationOfTheNews.slice(0,200) }}
+                        <button class="  btn btn-outline-danger " style="cursor: pointer; " data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" (click)="getNewsOne(data._id)">
+                            قراءه المزيد</button>
+                    </p>
+
+
+                </div>
+                <hr>
+                <div class=" row g-3">
+                    <div *ngFor=" let data of allData" class=" col-md-6   ">
+
+                        <div class=" item shadow-lg rounded-5 p-1 ">
+                            <div class=" d-flex justify-content-between">
+                                <h5 class=" me-3"> نوع الخبر : <span>{{data.newsType}}</span></h5>
+
+                            </div>
+                            <hr>
+                            <img [src]=" data.Image " class="imgNews w-100 mb-2" alt="">
+                            <h5>عنوان الخبر : <span>{{data.addressHeadline}}</span></h5>
+                            <p class=" text-muted"> <span class=" fw-bolder text-black mb-2"> مقال الخبر : </span>
+                                {{data.ExplanationOfTheNews.slice(0,200)}} <button (click)="getNewsOne(data._id)"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    class="  btn btn-outline-danger mt-2">قراءه
+                                    المزيد</button> </p>
+                            <!-- .slice(0,200) -->
+                            <p class=" text-center"><span class=" fw-bolder text-black mb-2"> التاريخ : </span>
+                                {{data.createdAt}}</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+        <div class=" col-md-3">
+            <img src="../../../assets/10202217114234880.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/1020225144444778.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/11202220125114163.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/11202228165540221.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/12202222222752880.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/9202223114158589.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/1.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/2.jpg" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/3.webp" class=" w-100 mb-5" alt="">
+            <img src="../../../assets/4.webp" class=" w-100 mb-5" alt="">
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<!-- ModalSlid -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
+
+            </div>
+            <div class="modal-body">
+                <div *ngFor="let data of dataOneNews" class=" item text-center">
+                    <h5 class=" my-2"> نوع الخبر : <span>{{data.newsType}}</span></h5>
+                    <img [src]="data.Image" alt="">
+                    <h5>عنوان الخبر : <span>{{data.addressHeadline}}</span></h5>
+
+                    <p class=" text-muted"> <span class=" fw-bolder text-black mb-2"> مقال الخبر : </span>
+                        {{data.ExplanationOfTheNews }} </p>
+                    <p><span class=" fw-bolder text-black my-2  "> التاريخ : </span> {{data.createdAt}}</p>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    (click)="remove()">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>

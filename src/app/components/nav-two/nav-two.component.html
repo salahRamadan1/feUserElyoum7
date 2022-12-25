@@ -1,0 +1,55 @@
+<div
+  class=" container mt-5 pb-5 bg-white py-2 navHome d-flex justify-content-center  text-white shadow-lg position-relative">
+  <h5 class=" py-2  rounded-5 shadow-lg p-2 ">مرحبا بك في موقع اليوم السابع</h5>
+  <h2 class=" position-absolute top-0 end-50  shadow-lg">مرحبا بك ايها الزائر نتمني لك اخبار شيقه </h2>
+</div>
+
+<div class=" container bg-white">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand"><img src="../../../assets//8847-youm7logofixed.png" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto  ">
+
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder" style="cursor: pointer;" routerLink="main"> <i
+                class="fa-solid fa-house text-danger ms-2"></i>الرئيسيه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="healthy">صحه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="Policy">سياسه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="economie">اقتصاد</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="accidents">حوادث</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="sports">رياضه</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" routerLink="auth" *ngIf="!isLoggedIn">تسجيل
+              الدخول</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link ms-4 fw-bolder " style="cursor: pointer;" href="#" (click)="logOut()"
+              *ngIf="isLoggedIn">تسجيل الخروج</a>
+          </li>
+        </ul>
+
+      </div>
+      <button class=" btn btn-outline-danger ms-2" *ngIf="isLoggedIn" routerLink="userNews"> اخبار الزوار </button>
+      <button class=" btn btn-outline-danger" *ngIf="isLoggedIn" routerLink="myNews"> اخبارك </button>
+
+    </div>
+
+  </nav>
+
+</div>

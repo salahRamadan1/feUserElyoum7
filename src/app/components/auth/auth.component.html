@@ -1,0 +1,138 @@
+<div class=" container bg-white position-relative  ">
+  <nav class="navbar navbar-expand-lg bg-light">
+    <div class=" ">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <form [formGroup]="loginForm" (ngSubmit)=" logInForm()">
+          <ul class="navbar-nav">
+
+            <li class="nav-item ms-5">
+              <!-- email -->
+              <label for="email" class=" mb-2"> البريد الالكتروني</label>
+              <input type="email" class=" rounded-3 form-control " formControlName="email">
+              <div class=" text-danger" *ngIf="loginForm.get('email')?.errors &&loginForm.get('email')?.touched">
+                <p *ngIf="loginForm.get('email')?.errors?.['required']">email is required</p>
+                <p *ngIf="loginForm.get('email')?.errors?.['email']">write the correct email</p>
+              </div>
+              <p class=" alert alert-danger mt-2" *ngIf="unSuccessLogIn" id="unSuccessLogIn">{{unSuccessLogIn}}</p>
+            </li>
+            <li class="nav-item">
+              <!-- password -->
+              <label for="password" class=" mb-2">كلمه المرور</label>
+              <input type="password" class=" rounded-3 form-control " formControlName="password">
+              <div class=" text-danger" *ngIf="loginForm.get('password')?.errors &&loginForm.get('password')?.touched">
+                <p *ngIf="loginForm.get('password')?.errors?.['required']">password is required</p>
+                <p *ngIf="loginForm.get('password')?.errors?.['maxlength']">password is maxlength 15</p>
+                <p *ngIf="loginForm.get('password')?.errors?.['minlength']">password is minlength 6 </p>
+              </div>
+            </li>
+            <button class="   position-absolute start-0 bottom-0 mb-3 btn btn-outline-danger w-25"
+              [disabled]="loginForm.invalid" type="submit">دخول </button>
+          </ul>
+        </form>
+
+      </div>
+    </div>
+
+  </nav>
+  <hr>
+  <div class=" row pb-3 align-items-center">
+    <div class=" col-md-6">
+      <div class=" item rounded-5">
+
+        <form [formGroup]="registerForm" (ngSubmit)="register()">
+
+          <!-- profile_pic -->
+
+          <label for="profile_pic" class=" float-start mb-2 btn btn-outline-danger"> اختيار صوره شخصيه </label>
+          <input type="file" id="profile_pic" class=" d-none" (change)="choosePhoto($event)"
+            formControlName="profile_pic">
+          <div class=" text-danger text-start"
+            *ngIf="registerForm.get('profile_pic')?.errors &&registerForm.get('profile_pic')?.touched">
+            <p *ngIf="registerForm.get('profile_pic')?.errors?.['required']">first name is required</p>
+
+          </div>
+          <br>
+
+          <!-- firstName  -->
+          <label for="firstName" class=" mb-2"> الاسم الاول</label>
+          <input type="text" id="firstName" class=" form-control" formControlName="firstName">
+          <div class=" text-danger text-start"
+            *ngIf="registerForm.get('firstName')?.errors &&registerForm.get('firstName')?.touched">
+            <p *ngIf="registerForm.get('firstName')?.errors?.['required']">first name is required</p>
+            <p *ngIf="registerForm.get('firstName')?.errors?.['maxlength']">first name is maxlength 16
+            </p>
+            <p *ngIf="registerForm.get('firstName')?.errors?.['minlength']">first name is minlength 2
+            </p>
+          </div>
+          <!-- lastName -->
+          <label for="lastName" class=" mb-2"> الاسم الثاني</label>
+          <input type="text" id="lastName" class=" form-control" formControlName="lastName">
+          <div class=" text-start text-danger"
+            *ngIf="registerForm.get('lastName')?.errors &&registerForm.get('lastName')?.touched">
+            <p *ngIf="registerForm.get('lastName')?.errors?.['required']">Last name is required</p>
+            <p *ngIf="registerForm.get('lastName')?.errors?.['maxlength']">Last name is maxlength 16
+            </p>
+            <p *ngIf="registerForm.get('lastName')?.errors?.['minlength']">Last name is minlength 2
+            </p>
+          </div>
+          <!-- email -->
+          <label for="email" class=" mb-2"> البريد الالكتروني </label>
+
+          <input type="email" formControlName="email" id="email" class=" form-control" placeholder="email">
+          <div class=" text-danger" *ngIf="registerForm.get('email')?.errors &&registerForm.get('email')?.touched">
+            <p *ngIf="registerForm.get('email')?.errors?.['required']">email is required</p>
+            <p *ngIf="registerForm.get('email')?.errors?.['email']">write the correct email</p>
+          </div>
+          <!-- password -->
+          <label for="password" class=" mb-2"> كلمه المرور </label>
+          <input type="password" id="password" class=" form-control" formControlName="password">
+          <div class=" text-danger"
+            *ngIf="registerForm.get('password')?.errors &&registerForm.get('password')?.touched">
+            <p *ngIf="registerForm.get('password')?.errors?.['required']">password is required</p>
+            <p *ngIf="registerForm.get('password')?.errors?.['maxlength']">password is maxlength 11</p>
+          </div>
+          <!-- button -->
+          <button class=" btn btn-danger mt-2 float-start" type="submit" [disabled]="registerForm.invalid"> تسجيل
+          </button>
+          <div class=" clearfix"></div>
+        </form>
+      </div>
+
+
+
+
+
+    </div>
+    <div class=" col-md-6 text-center">
+
+
+      <div id="success" class=" alert alert-success" *ngIf="success">{{success}}</div>
+      <div id="unSuccess" class=" alert alert-danger" *ngIf="unSuccess">{{unSuccess}}</div>
+
+      <div class=" body mt-5 d-flex">
+        <div class="textContainer">
+          <h1 class="d_f bouncingAnim">
+            <span>ا</span>
+            <span>ل</span>
+            <span>ي</span>
+            <span>و</span>
+            <span>م</span>
+            <span>ا</span>
+            <span>ل</span>
+            <span>س</span>
+            <span>ا</span>
+            <span>ب</span>
+            <span>ع</span>
+
+            <!-- Training -->
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
